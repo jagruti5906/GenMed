@@ -1,0 +1,6 @@
+{
+  "name": "OmniFlow Platform - Customer App & Admin Portal",
+  "description": "Multi-surface on-demand platform featuring customer mobile app, multi-role admin & operations portal, real-time dispatch synchronization, and interactive system architecture.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
