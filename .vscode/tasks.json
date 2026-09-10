@@ -1,0 +1,272 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Install separated dependencies",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"install"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Locate Node runtime",
+			"type": "shell",
+			"command": "where.exe",
+			"args": [
+				"node"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Install separated dependencies directly",
+			"type": "shell",
+			"command": "C:\\Program Files\\nodejs\\npm.cmd",
+			"args": [
+				"install"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Install frontend dependencies directly",
+			"type": "shell",
+			"command": "C:\\Program Files\\nodejs\\npm.cmd",
+			"args": [
+				"install",
+				"--prefix",
+				"frontend"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Install backend dependencies directly",
+			"type": "shell",
+			"command": "C:\\Program Files\\nodejs\\npm.cmd",
+			"args": [
+				"install",
+				"--prefix",
+				"backend"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Install frontend with Node PATH",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && npm install --prefix frontend"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Install backend with Node PATH",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && npm install --prefix backend"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Frontend lint",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && npm run lint --prefix frontend"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Frontend build",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && npm run build --prefix frontend"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Backend lint",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && npm run lint --prefix backend"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Backend build",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && npm run build --prefix backend"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Recheck frontend lint",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && npm run lint --prefix frontend"
+			],
+			"isBackground": false,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"label": "Start backend smoke test server",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && npm run dev --prefix backend"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check backend health endpoint",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\curl.exe",
+			"args": [
+				"-fsS",
+				"http://localhost:5000/api/health"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check backend services endpoint",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\curl.exe",
+			"args": [
+				"-fsS",
+				"-H",
+				"Authorization: Bearer token-super-admin",
+				"-H",
+				"x-authoritative-role: super_admin",
+				"http://localhost:5000/api/v1/services"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start frontend smoke test server",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && npm run dev --prefix frontend"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check frontend dev server",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\curl.exe",
+			"args": [
+				"-fsS",
+				"http://localhost:3000/"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Stop smoke test servers",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"$ports = 3000,5000; Get-NetTCPConnection -LocalPort $ports -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue }"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Run frontend and backend together",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && npm run dev"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify combined backend health",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\curl.exe",
+			"args": [
+				"-fsS",
+				"http://localhost:5000/api/health"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify combined frontend proxy",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\curl.exe",
+			"args": [
+				"-fsS",
+				"http://localhost:3000/"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verify frontend API proxy",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\curl.exe",
+			"args": [
+				"-fsS",
+				"http://localhost:3000/api/health"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Recheck running application",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\curl.exe",
+			"args": [
+				"-fsS",
+				"http://localhost:3000/api/health"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}
