@@ -71,11 +71,21 @@ app.use('/api/v1/webhooks',    webhookRouter);
 app.use(errorHandler);
 
 // ── Start ─────────────────────────────────────────────────────────────────────
-if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
-    app.listen(PORT, () => {
-        console.log(`🚀 [OmniFlow Backend] http://localhost:${PORT}`);
-        console.log(`📡 [OmniFlow Backend] Health: http://localhost:${PORT}/api/health`);
-        console.log(`📦 [OmniFlow Backend] API: http://localhost:${PORT}/api/v1`);
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, '0.0.0.0', () => {
+        console.log(`🚀 [OmniFlow Backend] Running on port ${PORT}`);
+        console.log(`📡 [OmniFlow Backend] Health: /api/health`);
+        console.log(`📦 [OmniFlow Backend] API: /api/v1`);
+    });
+}
+
+export default app;
+
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, '0.0.0.0', () => {
+        console.log(`🚀 [OmniFlow Backend] Running on port ${PORT}`);
+        console.log(`📡 [OmniFlow Backend] Health: /api/health`);
+        console.log(`📦 [OmniFlow Backend] API: /api/v1`);
     });
 }
 
