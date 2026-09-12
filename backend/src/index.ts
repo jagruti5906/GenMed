@@ -19,7 +19,6 @@ import { socketManager }    from './sockets/socketManager.js';
 dotenv.config();
 
 const app  = express();
-const PORT = process.env.PORT || 5000;
 
 // ── Security ──────────────────────────────────────────────────────────────────
 app.use(securityHeaders);
@@ -71,22 +70,14 @@ app.use('/api/v1/webhooks',    webhookRouter);
 app.use(errorHandler);
 
 // ── Start ─────────────────────────────────────────────────────────────────────
-if (process.env.NODE_ENV !== 'test') {
-    app.listen(PORT, '0.0.0.0', () => {
-        console.log(`🚀 [OmniFlow Backend] Running on port ${PORT}`);
-        console.log(`📡 [OmniFlow Backend] Health: /api/health`);
-        console.log(`📦 [OmniFlow Backend] API: /api/v1`);
-    });
-}
-
-export default app;
+const PORT = Number(process.env.PORT) || 5000;
 
 if (process.env.NODE_ENV !== 'test') {
-    app.listen(PORT, '0.0.0.0', () => {
-        console.log(`🚀 [OmniFlow Backend] Running on port ${PORT}`);
-        console.log(`📡 [OmniFlow Backend] Health: /api/health`);
-        console.log(`📦 [OmniFlow Backend] API: /api/v1`);
-    });
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`🚀 [OmniFlow Backend] Running on port ${PORT}`);
+    console.log(`📡 [OmniFlow Backend] Health: /api/health`);
+    console.log(`📦 [OmniFlow Backend] API: /api/v1`);
+  });
 }
 
 export default app;
